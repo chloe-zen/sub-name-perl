@@ -82,6 +82,19 @@ subname(name, sub)
 	mg->mg_flags |= MGf_REFCOUNTED;
 	mg->mg_obj = (SV *) gv;
 	SvRMAGICAL_on(cv);
+
+	if (PERLDB_SUBLINE && CvGV(cv)) {
+	    SV * const namesv = sv_newmortal();
+	    SV * infosv;
+	    gv_efullname3(namesv, CvGV(cv), NULL);
+	    infosv = hv_delete(GvHV(PL_DBsub), SvPVX_const(namesv), SvCUR(namesv), 0);
+	    if (infosv) {
+	        /* we use the gv's idea of its spelling, in case we call subname again on the same CV */
+		gv_efullname3(namesv, gv, NULL);
+		(void)hv_store(GvHV(PL_DBsub), SvPVX_const(namesv), SvCUR(namesv), SvREFCNT_inc(infosv), 0);
+	    }
+	}
+
 	CvANON_off(cv);
 #ifndef CvGV_set
 	CvGV(cv) = gv;
