@@ -1,0 +1,6 @@
+Makefile
+Name.c
+*.bs
+*.o
+blib
+pm_to_blib
