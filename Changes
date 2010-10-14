@@ -1,3 +1,7 @@
+0.0501 -- Thu Oct 14 16:51:02 PDT 2010
+    * Chip branch
+    * Update %DB::sub so debugger can tab-complete
+
 0.05 -- Wed Sep  8 00:51 CEST 2010
     * Stop using the padlist to refcount GVs. Instead use regular magic. This
       allows various modules, including B::Deparse, to safely peek into pads of
