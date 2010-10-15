@@ -83,9 +83,9 @@ subname(name, sub)
 	mg->mg_obj = (SV *) gv;
 	SvRMAGICAL_on(cv);
 
-	if (PERLDB_SUBLINE && CvGV(cv)) {
+	if (PERLDB_SUBLINE && CvGV(cv) && isGV(CvGV(cv))) {
 	    SV * const namesv = sv_newmortal();
-	    SV * infosv;
+	    SV *infosv;
 	    gv_efullname3(namesv, CvGV(cv), NULL);
 	    infosv = hv_delete(GvHV(PL_DBsub), SvPVX_const(namesv), SvCUR(namesv), 0);
 	    if (infosv) {
