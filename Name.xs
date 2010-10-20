@@ -7,6 +7,11 @@
 #include "perl.h"
 #include "XSUB.h"
 
+/* 5.8.8 is the first version with this, apparently */	
+#ifndef SvPVX_const
+#define SvPVX_const(sv)  ((const char *)SvPVX(sv))
+#endif
+
 static MGVTBL subname_vtbl;
 
 #ifndef PERL_MAGIC_ext
