@@ -1,3 +1,6 @@
+0.0502 -- Tue Oct 19 19:49:09 PDT 2010
+    * cope with missing SvPVX_const
+
 0.0501 -- Thu Oct 14 16:51:02 PDT 2010
     * Chip branch
     * Update %DB::sub so debugger can tab-complete
